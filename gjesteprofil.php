@@ -216,7 +216,7 @@ function test_input($data) {
     <h1>Velkommen til Motell Solsiden</h1>
     <nav>
         <ul>
-            <li><a href="home.php">Hjem</a></li>
+            <li><a href="index.php">Hjem</a></li>
             <li><a href="book.php">Bestill rom</a></li>
             <li><a href="about.php">Om Oss</a></li>
             <li><a href="contact.php">Kontakt</a></li>
