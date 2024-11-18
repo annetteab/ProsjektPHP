@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Velkommen til Motell Solsiden</title>
+    <link rel="stylesheet" href="main.css"> <!-- Eksternt CSS-dokument -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -94,13 +95,15 @@
 </header>
 
 <nav>
-    <a href="rom.php">Våre rom</a>
-    <a href="booking.php">Bestill rom</a>
-    <li><a href="about.php">Om Oss</a>
-    <a href="kontakt.php">Kontakt oss</a>
-    <a href="gjesteprofil.php">Min profil</a>
-</nav>
-
+        <ul>
+            <li><a href="booking.php">Bestill rom</a></li>
+            <li><a href="about.php">Om Oss</a></li>
+            <li><a href="contact.php">Kontakt oss</a></li>
+            <li><a href="gjesteprofil.php">Min profil</a></li>
+            <li><a href="login.php">Logg inn</a></li>
+            <li class="right-align"><a href="admin.php">Admin</a></li>
+        </ul>
+    </nav>
 <div class="hero">
     <h2>Føl deg hjemme, uansett hvor du er</h2>
 </div>

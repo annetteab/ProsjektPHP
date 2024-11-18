@@ -11,8 +11,12 @@
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Sørger for at hele høyden fylles */
         }
 
+        /* Stil for header */
         header {
             background-color: #333;
             color: #fff;
@@ -24,13 +28,15 @@
             margin: 0;
         }
 
+        /* Navigasjon */
         nav ul {
             list-style: none;
             padding: 0;
+            display: flex;
+            justify-content: center;
         }
 
         nav ul li {
-            display: inline;
             margin: 0 15px;
         }
 
@@ -39,27 +45,37 @@
             text-decoration: none;
         }
 
+        /* Hovedcontainer */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            flex: 1; /* Fyller opp ledig plass */
         }
 
+        /* Stil for intro-seksjonen */
+        .intro h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Stil for søkeboksen */
         .search-box {
             background-color: #fff;
             padding: 20px;
             margin: 20px 0;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
 
+        /* Stil for footer */
         footer {
             background-color: #333;
             color: #fff;
             padding: 10px 0;
             text-align: center;
-            position: absolute;
             width: 100%;
-            bottom: 0;
+            position: relative; /* Endret fra absolute til relative */
         }
     </style>
 </head>
@@ -70,10 +86,12 @@
     <nav>
         <ul>
             <li><a href="home.php">Hjem</a></li>
-            <li><a href="book.php">Bestill rom</a></li>
+            <li><a href="booking.php">Bestill rom</a></li>
             <li><a href="about.php">Om Oss</a></li>
             <li><a href="contact.php">Kontakt</a></li>
-            <li><a href="admin.php">Admin</a></li>
+            <li><a href="gjesteprofil.php">Min profil</a></li>
+            <li><a href="login.php">Logg inn</a></li>
+            <li class="right-align"><a href="admin.php">Admin</a></li>
         </ul>
     </nav>
 </header>
@@ -114,15 +132,50 @@
 
 <?php
 
+// Koble til databasen
+$servername = "localhost"; // Brukernavn for databasen
+$username = "root"; // Ditt brukernavn
+$password = ""; // Ditt passord
+$dbname = "motell"; // Din database
 
-/*
-$booking_id
-$user_id
-$room_id
-$check_in_date
-$check_out_date
-$adults
-$children
-*/
+$conn = new mysqli($servername, $username, $password, $dbname);
 
+// Sjekk tilkoblingen
+if ($conn->connect_error) {
+    die("Tilkobling feilet: " . $conn->connect_error);
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Få datoer og antall gjester fra skjemaet
+    $innsjekk = $_POST['check_in'];
+    $utsjekk = $_POST['check_out'];
+    $adults = $_POST['adults'];
+    $children = $_POST['children'];
+
+    // SQL-spørring for å finne tilgjengelige rom
+    $sql = "SELECT * FROM rom WHERE tilgjengelighet = 1 AND maks_voksne >= ? AND maks_barn >= ? 
+            AND romnummer NOT IN (
+                SELECT romnummer FROM reservasjoner 
+                WHERE (innsjekk < ? AND utsjekk > ?)
+            )";
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iiis", $adults, $children, $utsjekk, $innsjekk);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        // Vis tilgjengelige rom
+        while ($row = $result->fetch_assoc()) {
+            echo "Romnummer: " . $row["romnummer"] . " - Type: " . $row["type"] . " - Pris: " . $row["pris"] . "<br>";
+        }
+    } else {
+        echo "Ingen tilgjengelige rom for valgte datoer.";
+    }
+
+    $stmt->close();
+}
+
+$conn->close();
 ?>
+
