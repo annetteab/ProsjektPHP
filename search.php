@@ -71,84 +71,84 @@
     flex-wrap: wrap; /* Tillat linjebryting hvis det blir for trangt */
     gap: 10px; /* Avstand mellom elementene */
     align-items: center; /* Justerer elementene vertikalt */
-}
+    }
 
-form input[type="submit"] {
-    display: inline-block;
-    padding: 5px 20px;
-    background-color: #007BFF; /* Blå knapp */
-    color: white;
-    text-decoration: none;
-    border: none;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+    form input[type="submit"] {
+        display: inline-block;
+        padding: 5px 20px;
+        background-color: #007BFF; /* Blå knapp */
+        color: white;
+        text-decoration: none;
+        border: none;
+        border-radius: 5px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-form input[type="submit"]:hover {
-    background-color: #0262c9;
-}
+    form input[type="submit"]:hover {
+        background-color: #0262c9;
+    }
 
-form input[type="number"],
-form input[type="date"] {
-    width: auto; /* Sett til auto for å tilpasse bredden */
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+    form input[type="number"],
+    form input[type="date"] {
+        width: auto; /* Sett til auto for å tilpasse bredden */
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
 
 
- /* Stil for tilgjengelige rom */
-.available-rooms {
-    margin-top: 20px;
-    padding: 20px; /* Økt padding for mer rom */
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Større og mykere skygge */
-    width: 70%;  /* Setter maksimal bredde */
-    margin-left: auto;  /* Sentrerer boksen */
-    margin-right: auto; /* Sentrerer boksen */
-}
+    /* Stil for tilgjengelige rom */
+    .available-rooms {
+        margin-top: 20px;
+        padding: 20px; /* Økt padding for mer rom */
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Større og mykere skygge */
+        width: 70%;  /* Setter maksimal bredde */
+        margin-left: auto;  /* Sentrerer boksen */
+        margin-right: auto; /* Sentrerer boksen */
+    }
 
-/* Stil for tabellen */
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-family: Arial, sans-serif;  /* Bedre fontvalg */
-}
+    /* Stil for tabellen */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+        font-family: Arial, sans-serif;  /* Bedre fontvalg */
+    }
 
-/* Kantene og bakgrunnen på tabellen */
-table, th, td {
-    border: 1px solid #ddd;
-}
+    /* Kantene og bakgrunnen på tabellen */
+    table, th, td {
+        border: 1px solid #ddd;
+    }
 
-th, td {
-    padding: 12px;  /* Mer avstand i cellene */
-    text-align: left;  /* Venstrejustert tekst */
-}
+    th, td {
+        padding: 12px;  /* Mer avstand i cellene */
+        text-align: left;  /* Venstrejustert tekst */
+    }
 
-/* Stil for overskriftene i tabellen (th) */
-th {
-    background-color: #f4f4f4;  /* Lys bakgrunn for overskrifter */
-    color: #333;  /* Mørkere tekstfarge for overskrifter */
-    font-weight: bold;
-}
+    /* Stil for overskriftene i tabellen (th) */
+    th {
+        background-color: #f4f4f4;  /* Lys bakgrunn for overskrifter */
+        color: #333;  /* Mørkere tekstfarge for overskrifter */
+        font-weight: bold;
+    }
 
-/* Stil for radene (tr) */
-tr:nth-child(even) {
-    background-color: #f9f9f9;  /* Lys grå bakgrunn på annenhver rad */
-}
+    /* Stil for radene (tr) */
+    tr:nth-child(even) {
+        background-color: #f9f9f9;  /* Lys grå bakgrunn på annenhver rad */
+    }
 
-tr:hover {
-    background-color: #f1f1f1;  /* Lett grå bakgrunn på hover for bedre interaktivitet */
-}
+    tr:hover {
+        background-color: #f1f1f1;  /* Lett grå bakgrunn på hover for bedre interaktivitet */
+    }
 
-td {
-    color: #555;  /* Mørkere tekstfarge for bedre lesbarhet */
-}
+    td {
+        color: #555;  /* Mørkere tekstfarge for bedre lesbarhet */
+    }
 
     </style>
 </head>

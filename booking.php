@@ -59,34 +59,34 @@
             color: #333;
         }
 
-/* Stil for søkeboksen */
-.search-box {
-    background-color: #fff;
-    padding: 20px;
-    margin: 20px auto;  /* Sentraliserer boksen */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    max-width: 600px;  /* Maksimal bredde på søkeboksen */
-    width: 100%;  /* Tar opp hele tilgjengelige bredde innenfor max-width */
-}
-form label {
-            font-weight: bold;
-            margin-top: 10px;
-            display: block;
-        }
-form input[type="submit"] {
-        display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background-color: #007BFF; /* blå knapp */
-            color: white;
-            text-decoration: none;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
+    /* Stil for søkeboksen */
+    .search-box {
+        background-color: #fff;
+        padding: 20px;
+        margin: 20px auto;  /* Sentraliserer boksen */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        max-width: 600px;  /* Maksimal bredde på søkeboksen */
+        width: 100%;  /* Tar opp hele tilgjengelige bredde innenfor max-width */
+    }
+    form label {
+                font-weight: bold;
+                margin-top: 10px;
+                display: block;
+            }
+    form input[type="submit"] {
+            display: inline-block;
+                margin-top: 15px;
+                padding: 10px 20px;
+                background-color: #007BFF; /* blå knapp */
+                color: white;
+                text-decoration: none;
+                border: none;
+                border-radius: 5px;
+                text-align: center;
+                font-size: 16px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
         }
         form input[type="submit"]:hover {
             background-color: #0262c9;
@@ -110,8 +110,8 @@ form input[type="submit"] {
         }
     </style>
 </head>
-<body>
 
+<body>
 <header>
     <h1>Velkommen til Motellets Bookingsystem</h1>
     <nav>
@@ -127,7 +127,7 @@ form input[type="submit"] {
     </nav>
 </header>
 
-<div class="container">
+    <div class="container">
     <section class="intro">
         <h2>Om Motellet</h2>
         <p>Motellet vårt tilbyr komfortable rom til en rimelig pris. Vi har tre forskjellige romtyper: enkeltrom, dobbeltrom og junior suite. Vårt mål er å gi våre gjester en behagelig og avslappende opplevelse.</p>
@@ -151,7 +151,7 @@ form input[type="submit"] {
             <input type="submit" value="Søk Rom">
         </form>
     </section>
-</div>
+    </div>
 
 <footer>
     <p>&copy; 2024 Motell Booking. Alle rettigheter reservert.</p>

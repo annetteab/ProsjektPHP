@@ -178,11 +178,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             font-size: 16px;
             cursor: pointer;
             transition: background-color 0.3s ease;
-}
+    }
 
-.logout-button:hover {
-    background-color: #0262c9; /* Mørkere blå ved hover */
-}
+    .logout-button:hover {
+        background-color: #0262c9; /* Mørkere blå ved hover */
+    }
     </style>
 </head>
 <body>
