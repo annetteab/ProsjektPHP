@@ -94,7 +94,6 @@
             <li><a href="kontakt.php">Kontakt</a></li>
             <li><a href="gjesteprofil.php">Min profil</a></li>
             <li class="right-align"><a href="admin.php">Admin</a></li>
-            <li class="right-align"><a href="logout.php">Logg ut</a></li>
         </ul>
     </nav>
 </header>

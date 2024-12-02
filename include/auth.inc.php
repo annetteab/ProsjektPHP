@@ -1,4 +1,6 @@
+
 <?php
+/*
 // Start sesjonen
 session_start();
 
@@ -28,3 +30,4 @@ function login($bruker_id, $fornavn, $etternavn) {
     $_SESSION['etternavn'] = $etternavn;
 }
 ?>
+*/

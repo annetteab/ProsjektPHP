@@ -66,6 +66,39 @@
             width: 100%;
             position: relative; 
         }
+        form {
+    display: flex;
+    flex-wrap: wrap; /* Tillat linjebryting hvis det blir for trangt */
+    gap: 10px; /* Avstand mellom elementene */
+    align-items: center; /* Justerer elementene vertikalt */
+}
+
+form input[type="submit"] {
+    display: inline-block;
+    padding: 5px 20px;
+    background-color: #007BFF; /* Blå knapp */
+    color: white;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color: #0262c9;
+}
+
+form input[type="number"],
+form input[type="date"] {
+    width: auto; /* Sett til auto for å tilpasse bredden */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
 
  /* Stil for tilgjengelige rom */
 .available-rooms {
@@ -195,9 +228,10 @@ td {
                 $romnummer = $row["Romnummer"];
                 $type = $row["Type"];
                 $pris = $row["Pris"];
+                $beskrivelse = $row["Beskrivelse"];
         
                 echo "<div class='available-rooms'>";
-                echo "<p><a href='bestill.php?romnummer=$romnummer'>Romnummer: $romnummer - Type: $type - Pris: $pris NOK</a></p>";
+                echo "<p><a href='bestill.php?romnummer=$romnummer'>$type - $romnummer <br><br> $beskrivelse<br><br>NOK $pris</a></p>";
                 echo "</div>";
             }
         } else {

@@ -69,6 +69,36 @@
     max-width: 600px;  /* Maksimal bredde på søkeboksen */
     width: 100%;  /* Tar opp hele tilgjengelige bredde innenfor max-width */
 }
+form label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+form input[type="submit"] {
+        display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #007BFF; /* blå knapp */
+            color: white;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        form input[type="submit"]:hover {
+            background-color: #0262c9;
+        }
+        form input[type="number"],
+        form input[type="date"] {
+            width: 95%;
+            padding: 10px;
+            margin: 5px 0 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
         /* Stil for footer */
         footer {
             background-color: #333;

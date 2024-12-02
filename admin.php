@@ -116,7 +116,7 @@
     if (isset($_SESSION['rolle']) && $_SESSION['rolle'] == 'admin') {
         echo "<p>Velkommen, " . $_SESSION['fornavn'] . "</p>";
     } else {
-        die("Gjester har ikke tilgang til denne siden.");
+        die("Uautoriserte har ikke tilgang til denne siden.");
     }
 
 
@@ -127,7 +127,7 @@
     // Sjekk om vi har resultater
     if ($result->num_rows > 0) {
         echo "<table>";
-        echo "<tr><th>Romnummer</th><th>Type</th><th>Beskrivelse</th><th>Pris (NOK)</th><th>Maks Voksne</th><th>Maks Barn</th><th>Tilgjengelighet</th><th>Innsjekk</th><th>Utsjekk</th><th>Etasje</th><th>Nær Heis</th><th>Rediger</th></tr>";
+        echo "<tr><th>Romnummer</th><th>Type</th><th>Beskrivelse</th><th>Pris (NOK)</th><th>Maks Voksne</th><th>Maks Barn</th><th>Tilgjengelighet</th><th>Innsjekk</th><th>Utsjekk</th><th>Etasje</th><th>Nær Heis</th><th> </th></tr>";
 
         // Loop gjennom og vis hvert rom
         while ($row = $result->fetch_assoc()) {
