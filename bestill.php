@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Motell Booking</title>
-    <link rel="stylesheet" href="main.css"> <!-- Eksternt CSS-dokument -->
+    <link rel="stylesheet" href="css/main.css"> <!-- Eksternt CSS-dokument -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -130,11 +130,11 @@ if (isset($_GET['romnummer'])) {
 
     // Bookingskjema
     echo "<form method='post' action='bestill.php'>";
-    echo "<label for='check_in'>Innsjekk:</label>";
-    echo "<input type='date' id='check_in' name='check_in' required><br><br>";
+    echo "<label for='innsjekk'>Innsjekk:</label>";
+    echo "<input type='date' id='innsjekk' name='innsjekk' required><br><br>";
 
-    echo "<label for='check_out'>Utsjekk:</label>";
-    echo "<input type='date' id='check_out' name='check_out' required><br><br>";
+    echo "<label for='utsjekk'>Utsjekk:</label>";
+    echo "<input type='date' id='utsjekk' name='utsjekk' required><br><br>";
 
     echo "<input type='hidden' name='romnummer' value='$romnummer'>";
     echo "<input type='submit' value='Fullfør Bestilling'>";
@@ -147,8 +147,8 @@ if (isset($_GET['romnummer'])) {
 // Behandle bestillingen når skjemaet er sendt
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $romnummer = $_POST['romnummer'];
-    $innsjekk = $_POST['check_in'];
-    $utsjekk = $_POST['check_out'];
+    $innsjekk = $_POST['innsjekk'];
+    $utsjekk = $_POST['utsjekk'];
     $bruker_id = $_SESSION['bruker_id']; // Hent brukerens ID fra sesjonen
 
     // Sett inn bestillingen i databasen
@@ -158,15 +158,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($stmt->execute()) {
         echo "Rommet er bestilt!<br>";
+        echo "Rom $romnummer <br>";
         echo "Innsjekk: $innsjekk - Utsjekk: $utsjekk";
 
         // Oppdater rommets tilgjengelighet til 'Opptatt'
-        $update_sql = "UPDATE Rom SET Tilgjengelighet = 'Opptatt' WHERE Romnummer = ?";
+        $update_sql = "UPDATE Rom SET Tilgjengelighet = 'Opptatt', innsjekk = ?, utsjekk = ? WHERE Romnummer = ?" ; 
         $update_stmt = $conn->prepare($update_sql);
-        $update_stmt->bind_param("i", $romnummer);
+        $update_stmt->bind_param("ssi", $innsjekk, $utsjekk, $romnummer);
         $update_stmt->execute();
         
-        // Om ønskelig, kan du omdirigere til en bekreftelsesside:
+        // omdirigere til en bekreftelsesside:
         // header("Location: confirmation.php");
     } else {
         echo "Feil ved bestilling: " . $stmt->error;

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Motell Booking</title>
-    <link rel="stylesheet" href="main.css"> <!-- Eksternt CSS-dokument -->
+    <link rel="stylesheet" href="css/main.css"> <!-- Eksternt CSS-dokument -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,15 +59,16 @@
             color: #333;
         }
 
-        /* Stil for søkeboksen */
-        .search-box {
-            background-color: #fff;
-            padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-
+/* Stil for søkeboksen */
+.search-box {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px auto;  /* Sentraliserer boksen */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    max-width: 600px;  /* Maksimal bredde på søkeboksen */
+    width: 100%;  /* Tar opp hele tilgjengelige bredde innenfor max-width */
+}
         /* Stil for footer */
         footer {
             background-color: #333;
@@ -105,11 +106,11 @@
     <section class="search-box">
         <h3>Søk etter ledige rom</h3>
         <form method="post" action="search.php">
-            <label for="check_in">Innsjekk:</label>
-            <input type="date" id="check_in" name="check_in" required><br><br>
+            <label for="innsjekk">Innsjekk:</label>
+            <input type="date" id="innsjekk" name="innsjekk" required><br><br>
 
-            <label for="check_out">Utsjekk:</label>
-            <input type="date" id="check_out" name="check_out" required><br><br>
+            <label for="utsjekk">Utsjekk:</label>
+            <input type="date" id="utsjekk" name="utsjekk" required><br><br>
 
             <label for="adults">Antall voksne:</label>
             <input type="number" id="adults" name="adults" min="1" required><br><br>
@@ -147,8 +148,8 @@ if ($conn->connect_error) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Få datoer og antall gjester fra skjemaet
-    $innsjekk = $_POST['check_in'];
-    $utsjekk = $_POST['check_out'];
+    $innsjekk = $_POST['innsjekk'];
+    $utsjekk = $_POST['utsjekk'];
     $adults = $_POST['adults'];
     $children = $_POST['children'];
 

@@ -94,89 +94,40 @@
             <li><a href="contact.php">Kontakt</a></li>
             <li><a href="gjesteprofil.php">Min profil</a></li>
             <li class="right-align"><a href="admin.php">Admin</a></li>
-            <li class="right-align"><a href="logout.php">Logg ut</a></li>
+
         </ul>
     </nav>
 </header>
 
-<div class="container">
-    <section class="login-box">
-        <h2>Logg inn</h2>
-        <form method="post" action="login.php">
-            <label for="email">E-post:</label>
-            <input type="email" id="email" name="email" required><br><br>
-            
-            <label for="password">Passord:</label>
-            <input type="password" id="password" name="password" required><br><br>
-            
-            <input type="submit" value="Logg inn">
-            <a href="user.php" class="button">Registrer deg</a>
-
-        </form>
-        
 <?php
-session_start(); // Start sesjonen
 
-// Koble til databasen
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "motell";
+// Start sessionen for å få tilgang til session-variabler
+session_start();
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Tilkobling feilet: " . $conn->connect_error);
-}
+// Sjekk om brukeren er logget inn
+if (isset($_SESSION['bruker_id'])) {
+    // Fjern alle session-variabler
+    $_SESSION = array();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    // Ødelegg sessionen
+    session_destroy();
 
-    // Hent brukerdata fra databasen basert på e-post
-    $sql = "SELECT bruker_id, fornavn, etternavn, epost, mobil, passord, rolle FROM users WHERE epost = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows == 1) {
-        $user = $result->fetch_assoc();
-        $rolle = $user["rolle"];
-
-        // Verifiser passord
-        if (password_verify($password, $user['passord'])) {
-            // Lagre nødvendige data i $_SESSION
-            $_SESSION['bruker_id'] = $user['bruker_id'];
-            $_SESSION['fornavn'] = $user['fornavn'];
-            $_SESSION['etternavn'] = $user['etternavn'];
-            $_SESSION['epost'] = $user['epost'];
-            $_SESSION['mobil'] = $user['mobil'];
-            $_SESSION['rolle'] = $user['rolle'];
-
-// Sjekk rolle og redirect til riktig side
-    if ($rolle === "admin") {
-    header("Location: admin.php");
-    } else {
-    header("Location: booking.php");
-    }
+    // Diriger brukeren til login-siden etter logout
+    header("Location: login.php");  // Eller en annen side du ønsker å sende brukeren til
     exit;
-        } else {
-    echo "Feil passord.";
-    }
-        } else {
-    echo "Bruker ikke funnet.";
-    }
-
-$stmt->close();
+} else {
+    // Hvis ingen bruker er logget inn, kan du videresende til login-siden
+    header("Location: login.php");
+    exit;
 }
-
-$conn->close();
 ?>
 
 
 
-    </section>
-</div>
+
+
+
+
 
 <footer>
     <p>&copy; 2024 Motell Booking. Alle rettigheter reservert.</p>

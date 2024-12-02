@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin</title>
-    <link rel="stylesheet" href="main.css"> <!-- Eksternt CSS-dokument -->
+    <link rel="stylesheet" href="css/main.css"> <!-- Eksternt CSS-dokument -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -147,13 +147,13 @@ if ($conn->connect_error) {
 }
 
 // SQL-spørring for å hente alle romdataene
-$sql = "SELECT Romnummer, Type, Pris, Maks_voksne, Maks_barn, Tilgjengelighet, Etasje, Nar_heis FROM Rom";
+$sql = "SELECT Romnummer, Type, Pris, Maks_voksne, Maks_barn, Tilgjengelighet, innsjekk, utsjekk, Etasje, Nar_heis FROM Rom";
 $result = $conn->query($sql);
 
 // Sjekk om vi har resultater
 if ($result->num_rows > 0) {
     echo "<table class='room-table'>";
-    echo "<tr><th>Rom</th><th>Type</th><th>Pris (NOK)</th><th>Maks Voksne</th><th>Maks Barn</th><th>Tilgjengelighet</th><th>Etasje</th><th>Nær heis</th></tr>";
+    echo "<tr><th>Rom</th><th>Type</th><th>Pris (NOK)</th><th>Maks Voksne</th><th>Maks Barn</th><th>Tilgjengelighet</th><th>innsjekk</th><th>utsjekk</th><th>Etasje</th><th>Nær heis</th></tr>";
 
     // Loop gjennom og vis hvert rom
     while($row = $result->fetch_assoc()) {
@@ -164,6 +164,8 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["Maks_voksne"] . "</td>";
         echo "<td>" . $row["Maks_barn"] . "</td>";
         echo "<td>" . $row["Tilgjengelighet"] . "</td>";
+        echo "<td>" . $row["innsjekk"] . "</td>";
+        echo "<td>" . $row["utsjekk"] . "</td>";
         echo "<td>" . $row["Etasje"] . "</td>";
         echo "<td>" . $row["Nar_heis"] . "</td>";
         echo "</tr>";

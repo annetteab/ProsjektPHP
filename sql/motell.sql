@@ -65,6 +65,8 @@ CREATE TABLE `rom` (
   `Maks_voksne` int(11) NOT NULL,
   `Maks_barn` int(11) NOT NULL,
   `Tilgjengelighet` varchar(20) NOT NULL,
+  `innsjekk` DATE NOT NULL,
+  `utsjekk` DATE NOT NULL,
   `Etasje` varchar(20) NOT NULL,
   `Nar_heis` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -113,7 +115,7 @@ CREATE TABLE `users` (
   `mobil` int(15) DEFAULT NULL,
   `epost` varchar(100) DEFAULT NULL,
   `passord` varchar(100) DEFAULT NULL,
-  `rolle` enum('gjest','administrator') DEFAULT NULL
+  `rolle` enum('gjest','admin') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --

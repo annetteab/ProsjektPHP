@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrer ny bruker</title>
-    <link rel="stylesheet" href="main.css"> <!-- Eksternt CSS-dokument -->
+    <link rel="stylesheet" href="css/main.css"> <!-- Eksternt CSS-dokument -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -112,11 +112,14 @@ if ($conn->connect_error) {
 }
 
 //definere variabler og gi dem tomme verdier
-$firstname = $lastname = $email = $phone = $password = "";
+$firstname = $lastname = $email = $phone = $password = $rolle = "";
 $firstnameErr = $lastnameErr = $emailErr = $phoneErr = $passwordErr = "";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    // Rolle
+    $rolle = $_POST["rolle"] === "admin" ? "admin" : "gjest";
     
     // Sjekk fornavn
     if (empty($_POST["firstname"])) {
@@ -174,11 +177,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // SQL-innsettingsspørring
-        $sql = "INSERT INTO users (fornavn, etternavn, epost, mobil, passord, rolle) VALUES (?, ?, ?, ?, ?, 'gjest')";
+        $sql = "INSERT INTO users (fornavn, etternavn, epost, mobil, passord, rolle) VALUES (?, ?, ?, ?, ?, ?)";
         
         // Forbered og bind
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("sssss", $firstname, $lastname, $email, $phone, $hashed_password);
+        $stmt->bind_param("ssssss", $firstname, $lastname, $email, $phone, $hashed_password, $rolle);
 
         // Utfør spørringen
         if ($stmt->execute()) {
@@ -232,6 +235,13 @@ $conn->close();
         <span class="error"><?php echo $passwordErr; ?></span>
         <br><br>
         
+        <label for="role">Velg rolle:</label>
+        <select id="role" name="role">
+        <option value="guest">Gjest</option>
+        <option value="admin">Admin</option>
+        </select>
+        <br><br>
+
         <input type="submit" name="submit" value="Registrer">
     </form>
 </body>

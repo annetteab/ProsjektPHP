@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Motell Booking</title>
-    <link rel="stylesheet" href="main.css"> <!-- Eksternt CSS-dokument -->
+    <link rel="stylesheet" href="css/main.css"> <!-- Eksternt CSS-dokument -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -31,7 +31,7 @@
             list-style: none;
             padding: 0;
             display: flex;
-            justify-content: center;
+            text-align: center;
         }
 
         nav ul li {
@@ -67,32 +67,56 @@
             position: relative; 
         }
 
-        .available-rooms {
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+ /* Stil for tilgjengelige rom */
+.available-rooms {
+    margin-top: 20px;
+    padding: 20px; /* Økt padding for mer rom */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* Større og mykere skygge */
+    width: 70%;  /* Setter maksimal bredde */
+    margin-left: auto;  /* Sentrerer boksen */
+    margin-right: auto; /* Sentrerer boksen */
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
+/* Stil for tabellen */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;  /* Bedre fontvalg */
+}
 
-        table, th, td {
-            border: 1px solid #ddd;
-        }
+/* Kantene og bakgrunnen på tabellen */
+table, th, td {
+    border: 1px solid #ddd;
+}
 
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
+th, td {
+    padding: 12px;  /* Mer avstand i cellene */
+    text-align: left;  /* Venstrejustert tekst */
+}
 
-        th {
-            background-color: #f2f2f2;
-        }
+/* Stil for overskriftene i tabellen (th) */
+th {
+    background-color: #f4f4f4;  /* Lys bakgrunn for overskrifter */
+    color: #333;  /* Mørkere tekstfarge for overskrifter */
+    font-weight: bold;
+}
+
+/* Stil for radene (tr) */
+tr:nth-child(even) {
+    background-color: #f9f9f9;  /* Lys grå bakgrunn på annenhver rad */
+}
+
+tr:hover {
+    background-color: #f1f1f1;  /* Lett grå bakgrunn på hover for bedre interaktivitet */
+}
+
+td {
+    color: #555;  /* Mørkere tekstfarge for bedre lesbarhet */
+}
+
     </style>
 </head>
 <body>
@@ -115,11 +139,11 @@
 <div class="container">
     <h2>Søk etter rom</h2>
     <form method="post" action="search.php">
-        <label for="checkin_date">Innsjekkingsdato:</label>
-        <input type="date" id="checkin_date" name="check_in" required>
+        <label for="innsjekk">Innsjekkingsdato:</label>
+        <input type="date" id="innsjekk" name="innsjekk" required>
 
-        <label for="checkout_date">Utsjekkingsdato:</label>
-        <input type="date" id="checkout_date" name="check_out" required>
+        <label for="utsjekk">Utsjekkingsdato:</label>
+        <input type="date" id="utsjekk" name="utsjekk" required>
 
         <label for="adults">Antall voksne:</label>
         <input type="number" id="adults" name="adults" min="1" required>
@@ -145,10 +169,10 @@
         die("Tilkobling feilet: " . $conn->connect_error);
     }
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['innsjekk']) && isset($_POST['utsjekk'])) {
         // Få datoer og antall gjester fra skjemaet
-        $innsjekk = $_POST['check_in'];
-        $utsjekk = $_POST['check_out'];
+        $innsjekk = $_POST['innsjekk'];
+        $utsjekk = $_POST['utsjekk'];
         $adults = $_POST['adults'];
         $children = $_POST['children'];
 
