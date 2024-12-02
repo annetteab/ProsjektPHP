@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18. Nov, 2024 14:32 PM
+-- Generation Time: 02. Des, 2024 18:31 PM
 -- Tjener-versjon: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -35,23 +35,6 @@ CREATE TABLE `reservasjoner` (
   `utsjekk` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dataark for tabell `reservasjoner`
---
-
-INSERT INTO `reservasjoner` (`id`, `romnummer`, `gjest_id`, `innsjekk`, `utsjekk`) VALUES
-(2, '102', NULL, NULL, NULL),
-(3, '102', NULL, NULL, NULL),
-(4, '102', NULL, NULL, NULL),
-(5, '102', NULL, NULL, NULL),
-(6, '102', NULL, NULL, NULL),
-(7, '104', NULL, NULL, NULL),
-(8, '104', 2, NULL, NULL),
-(9, '104', 2, NULL, NULL),
-(10, '102', 2, '2024-11-13', '2024-11-14'),
-(11, '102', 2, '2024-11-19', '2024-11-20'),
-(12, '505', 2, '2024-11-19', '2024-11-20');
-
 -- --------------------------------------------------------
 
 --
@@ -61,12 +44,13 @@ INSERT INTO `reservasjoner` (`id`, `romnummer`, `gjest_id`, `innsjekk`, `utsjekk
 CREATE TABLE `rom` (
   `Romnummer` varchar(10) NOT NULL,
   `Type` varchar(20) NOT NULL,
+  `Beskrivelse` varchar(500) DEFAULT NULL,
   `Pris` int(11) NOT NULL,
   `Maks_voksne` int(11) NOT NULL,
   `Maks_barn` int(11) NOT NULL,
   `Tilgjengelighet` varchar(20) NOT NULL,
-  `innsjekk` DATE NOT NULL,
-  `utsjekk` DATE NOT NULL,
+  `innsjekk` date NOT NULL,
+  `utsjekk` date NOT NULL,
   `Etasje` varchar(20) NOT NULL,
   `Nar_heis` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -75,32 +59,32 @@ CREATE TABLE `rom` (
 -- Dataark for tabell `rom`
 --
 
-INSERT INTO `rom` (`Romnummer`, `Type`, `Pris`, `Maks_voksne`, `Maks_barn`, `Tilgjengelighet`, `Etasje`, `Nar_heis`) VALUES
-('101', 'Enkeltrom', 800, 1, 0, 'Ledig', 'Lavere', 'Ja'),
-('102', 'Dobbeltrom', 1200, 2, 1, 'Opptatt', 'Lavere', 'Ja'),
-('103', 'Enkeltrom', 800, 1, 0, 'Ledig', 'Lavere', 'Nei'),
-('104', 'Dobbeltrom', 1200, 2, 1, 'Ledig', 'Lavere', 'Nei'),
-('105', 'Junior Suite', 2000, 2, 2, 'Ledig', 'Lavere', 'Ja'),
-('201', 'Enkeltrom', 800, 1, 0, 'Ledig', 'Lavere', 'Ja'),
-('202', 'Dobbeltrom', 1200, 2, 1, 'Ledig', 'Lavere', 'Ja'),
-('203', 'Enkeltrom', 800, 1, 0, 'Ledig', 'Lavere', 'Nei'),
-('204', 'Dobbeltrom', 1200, 2, 1, 'Ledig', 'Lavere', 'Nei'),
-('205', 'Junior Suite', 2000, 2, 2, 'Ledig', 'Lavere', 'Ja'),
-('301', 'Enkeltrom', 800, 1, 0, 'Ledig', 'Høyere', 'Ja'),
-('302', 'Dobbeltrom', 1200, 2, 1, 'Ledig', 'Høyere', 'Ja'),
-('303', 'Enkeltrom', 800, 1, 0, 'Ledig', 'Høyere', 'Nei'),
-('304', 'Dobbeltrom', 1200, 2, 1, 'Ledig', 'Høyere', 'Nei'),
-('305', 'Junior Suite', 2000, 2, 2, 'Ledig', 'Høyere', 'Ja'),
-('401', 'Enkeltrom', 900, 1, 0, 'Ledig', 'Høyere', 'Ja'),
-('402', 'Dobbeltrom', 1400, 2, 1, 'Ledig', 'Høyere', 'Ja'),
-('403', 'Enkeltrom', 1000, 1, 1, 'Ledig', 'Høyere', 'Nei'),
-('404', 'Dobbeltrom', 1400, 2, 1, 'Ledig', 'Høyere', 'Nei'),
-('405', 'Junior Suite', 2200, 2, 2, 'Ledig', 'Høyere', 'Ja'),
-('501', 'Enkeltrom', 900, 1, 0, 'Ledig', 'Høyere', 'Ja'),
-('502', 'Dobbeltrom', 1400, 2, 1, 'Ledig', 'Høyere', 'Ja'),
-('503', 'Enkeltrom', 1000, 1, 1, 'Ledig', 'Høyere', 'Nei'),
-('504', 'Dobbeltrom', 1400, 2, 1, 'Ledig', 'Høyere', 'Nei'),
-('505', 'Junior Suite', 2500, 2, 2, 'Opptatt', 'Høyere', 'Ja');
+INSERT INTO `rom` (`Romnummer`, `Type`, `Beskrivelse`, `Pris`, `Maks_voksne`, `Maks_barn`, `Tilgjengelighet`, `innsjekk`, `utsjekk`, `Etasje`, `Nar_heis`) VALUES
+('101', 'Enkeltrom', 'For den enslige reisende. Koselig og privat.', 800, 1, 0, 'Ledig', '0000-00-00', '0000-00-00', 'Lavere', 'Ja'),
+('102', 'Dobbeltrom', 'Perfekt for par eller to venner. To enkle senger som kan slåes sammen.', 1200, 2, 1, 'Ledig', '0000-00-00', '0000-00-00', 'Lavere', 'Ja'),
+('103', 'Enkeltrom', 'For den enslige reisende. Koselig og privat.', 800, 1, 0, 'Ledig', '0000-00-00', '0000-00-00', 'Lavere', 'Nei'),
+('104', 'Dobbeltrom', 'Perfekt for par eller to venner. To enkle senger som kan slåes sammen.', 1200, 2, 1, 'Opptatt', '2024-12-09', '2024-12-11', 'Lavere', 'Nei'),
+('105', 'Junior Suite', 'For ekstra komfort og plass. En dobbeltseng, en enkeltseng og en sovesofa. ', 2000, 2, 2, 'Ledig', '0000-00-00', '0000-00-00', 'Lavere', 'Ja'),
+('201', 'Enkeltrom', 'For den enslige reisende. Frittstående enkeltseng. Koselig og privat.', 800, 1, 0, 'Ledig', '0000-00-00', '0000-00-00', 'Lavere', 'Ja'),
+('202', 'Dobbeltrom', 'Perfekt for par eller to venner. To enkle senger som kan slåes sammen.', 1200, 2, 1, 'Opptatt', '2024-12-16', '2024-12-18', 'Lavere', 'Ja'),
+('203', 'Enkeltrom', 'For den enslige reisende. Enkeltseng. Koselig og privat.', 800, 1, 0, 'Ledig', '0000-00-00', '0000-00-00', 'Lavere', 'Nei'),
+('204', 'Dobbeltrom', 'Perfekt for par eller to venner. To enkle senger som kan slåes sammen.', 1200, 2, 1, 'Ledig', '0000-00-00', '0000-00-00', 'Lavere', 'Nei'),
+('205', 'Junior Suite', 'For ekstra komfort og plass. En dobbeltseng, en enkeltseng og en sovesofa. ', 2000, 2, 2, 'Ledig', '0000-00-00', '0000-00-00', 'Lavere', 'Ja'),
+('301', 'Enkeltrom', 'For den enslige reisende. Enkeltseng. Koselig og privat.', 800, 1, 0, 'Ledig', '0000-00-00', '0000-00-00', 'Høyere', 'Ja'),
+('302', 'Dobbeltrom', 'Perfekt for par eller to venner. To enkle senger som kan slåes sammen.', 1200, 2, 1, 'Ledig', '0000-00-00', '0000-00-00', 'Høyere', 'Ja'),
+('303', 'Enkeltrom', 'For den enslige reisende. Enkeltseng. Koselig og privat.', 800, 1, 0, 'Ledig', '0000-00-00', '0000-00-00', 'Høyere', 'Nei'),
+('304', 'Dobbeltrom', 'Perfekt for par eller to venner. To enkle senger som kan slåes sammen.', 1200, 2, 1, 'Ledig', '0000-00-00', '0000-00-00', 'Høyere', 'Nei'),
+('305', 'Junior Suite', 'For ekstra komfort og plass. En dobbeltseng og to enkeltsenger med mulighet for sammenslåing.', 2000, 2, 2, 'Ledig', '0000-00-00', '0000-00-00', 'Høyere', 'Ja'),
+('401', 'Enkeltrom', 'For den enslige reisende. Frittstående enkeltseng. Koselig og privat.', 900, 1, 0, 'Ledig', '0000-00-00', '0000-00-00', 'Høyere', 'Ja'),
+('402', 'Dobbeltrom', 'Perfekt for par eller to venner. Queen size bed.', 1400, 2, 1, 'Ledig', '0000-00-00', '0000-00-00', 'Høyere', 'Ja'),
+('403', 'Enkeltrom', 'Enkeltseng med mulighet for barneseng eller feltseng.', 1000, 1, 1, 'Ledig', '0000-00-00', '0000-00-00', 'Høyere', 'Nei'),
+('404', 'Dobbeltrom', 'Perfekt for par eller to venner. King size bed.', 1400, 2, 1, 'Ledig', '0000-00-00', '0000-00-00', 'Høyere', 'Nei'),
+('405', 'Junior Suite', 'For ekstra komfort og plass. En dobbeltseng og to enkeltsenger med mulighet for sammenslåing.', 2200, 2, 2, 'Ledig', '0000-00-00', '0000-00-00', 'Høyere', 'Ja'),
+('501', 'Enkeltrom', 'Enslig reisende med utsikt over sjøen.', 900, 1, 0, 'Ledig', '0000-00-00', '0000-00-00', 'Høyere', 'Ja'),
+('502', 'Dobbeltrom', 'Perfekt for par eller to venner. King size bed. Utsikt til sjøen.', 1500, 2, 1, 'Ledig', '0000-00-00', '0000-00-00', 'Høyere', 'Ja'),
+('503', 'Enkeltrom', 'Enkeltseng med mulighet for barneseng eller feltseng.', 1000, 1, 1, 'Ledig', '0000-00-00', '0000-00-00', 'Høyere', 'Nei'),
+('504', 'Dobbeltrom', 'Perfekt for par eller to venner. To enkle senger som kan slåes sammen. Utsikt til sjøen.', 1400, 2, 1, 'Ledig', '0000-00-00', '0000-00-00', 'Høyere', 'Nei'),
+('505', 'Junior Suite', 'For ekstra komfort og plass. To soverom. En dobbeltseng og to enkeltsenger med mulighet for sammenslåing. Utsikt til sjøen.', 2500, 2, 2, 'Ledig', '0000-00-00', '0000-00-00', 'Høyere', 'Ja');
 
 -- --------------------------------------------------------
 
@@ -115,7 +99,7 @@ CREATE TABLE `users` (
   `mobil` int(15) DEFAULT NULL,
   `epost` varchar(100) DEFAULT NULL,
   `passord` varchar(100) DEFAULT NULL,
-  `rolle` enum('gjest','admin') DEFAULT NULL
+  `rolle` enum('gjest','admin') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -123,8 +107,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`bruker_id`, `fornavn`, `etternavn`, `mobil`, `epost`, `passord`, `rolle`) VALUES
-(1, 'Annette', 'Brynhildsen', 97697177, 'annetteab98@gmail.com', '$2y$10$okftSgTC3.e4NGKfhRAWje/auAHMGZkdjXraxCw8098UWAImk6S5y', 'gjest'),
-(2, 'Annette', 'Brynhildsen', 97697100, 'annetteab@test.com', '$2y$10$pCpAzl2fGdgmx0nGWZ0gF.rHpWksOt/Vi4MAWMDGuDyYkvLxlg.Yu', 'gjest');
+(7, 'Annette', 'Brynhildsen', 97697177, 'annetteab98@gmail.com', '$2y$10$fZCzxjVY2E7irBnFwpSk9uCrYwD472Cz1An0RL.tqWFerVMVCrqzO', 'admin'),
+(8, 'Rebekka', 'Broderstad', 98765432, 'rb@gmail.com', '$2y$10$Di9vDDbrd2MZuxGfr0scCeOJfNh8q3cjw0Hq.XZg81NwyBKXRHDc2', 'gjest');
 
 --
 -- Indexes for dumped tables
@@ -158,13 +142,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `reservasjoner`
 --
 ALTER TABLE `reservasjoner`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `bruker_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `bruker_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Begrensninger for dumpede tabeller

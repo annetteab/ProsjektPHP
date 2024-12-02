@@ -29,6 +29,7 @@ if (isset($_GET['room'])) {
 // Oppdater data når skjema sendes
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $type = $_POST['type'];
+    $beskrivelse = $_POST['beskrivelse'];
     $pris = $_POST['pris'];
     $maks_voksne = $_POST['maks_voksne'];
     $maks_barn = $_POST['maks_barn'];
@@ -38,6 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $update_sql = "UPDATE Rom SET 
         Type='$type',
+        Beskrivelse='$beskrivelse',
         Pris='$pris',
         Maks_voksne='$maks_voksne',
         Maks_barn='$maks_barn',
@@ -171,6 +173,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>Type:</label>
         <input type="text" name="type" value="<?php echo $room['Type']; ?>">
         
+        <label>Beskrivelse:</label>
+        <input type="text" name="beskrivelse" value="<?php echo $room['Beskrivelse']; ?>">
+
         <label>Pris (NOK):</label>
         <input type="number" name="pris" value="<?php echo $room['Pris']; ?>">
         

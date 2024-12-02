@@ -112,7 +112,7 @@
 
  // Hvis admin er logget inn, vis siden
     session_start(); 
-    
+
     if (isset($_SESSION['rolle']) && $_SESSION['rolle'] == 'admin') {
         echo "<p>Velkommen, " . $_SESSION['fornavn'] . "</p>";
     } else {
@@ -121,19 +121,20 @@
 
 
     // SQL-spørring for å hente alle romdataene
-    $sql = "SELECT Romnummer, Type, Pris, Maks_voksne, Maks_barn, Tilgjengelighet, innsjekk, utsjekk, Etasje, Nar_heis FROM Rom";
+    $sql = "SELECT Romnummer, Type, Beskrivelse, Pris, Maks_voksne, Maks_barn, Tilgjengelighet, innsjekk, utsjekk, Etasje, Nar_heis FROM Rom";
     $result = $conn->query($sql);
 
     // Sjekk om vi har resultater
     if ($result->num_rows > 0) {
         echo "<table>";
-        echo "<tr><th>Romnummer</th><th>Type</th><th>Pris (NOK)</th><th>Maks Voksne</th><th>Maks Barn</th><th>Tilgjengelighet</th><th>Innsjekk</th><th>Utsjekk</th><th>Etasje</th><th>Nær Heis</th><th>Rediger</th></tr>";
+        echo "<tr><th>Romnummer</th><th>Type</th><th>Beskrivelse</th><th>Pris (NOK)</th><th>Maks Voksne</th><th>Maks Barn</th><th>Tilgjengelighet</th><th>Innsjekk</th><th>Utsjekk</th><th>Etasje</th><th>Nær Heis</th><th>Rediger</th></tr>";
 
         // Loop gjennom og vis hvert rom
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
             echo "<td>" . $row["Romnummer"] . "</td>";
             echo "<td>" . $row["Type"] . "</td>";
+            echo "<td>" . $row["Beskrivelse"] . "</td>";
             echo "<td>" . $row["Pris"] . "</td>";
             echo "<td>" . $row["Maks_voksne"] . "</td>";
             echo "<td>" . $row["Maks_barn"] . "</td>";
