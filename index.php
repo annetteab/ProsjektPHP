@@ -98,7 +98,7 @@
         <ul>
             <li><a href="booking.php">Bestill rom</a></li>
             <li><a href="about.php">Om Oss</a></li>
-            <li><a href="contact.php">Kontakt oss</a></li>
+            <li><a href="kontakt.php">Kontakt oss</a></li>
             <li><a href="gjesteprofil.php">Min profil</a></li>
             <li><a href="login.php">Logg inn</a></li>
             <li class="right-align"><a href="admin.php">Admin</a></li>

@@ -89,7 +89,7 @@
     <nav>
         <ul>
             <li><a href="index.php">Hjem</a></li>
-            <li><a href="book.php">Bestill rom</a></li>
+            <li><a href="booking.php">Bestill rom</a></li>
             <li><a href="about.php">Om Oss</a></li>
             <li><a href="contact.php">Kontakt</a></li>
             <li><a href="login.php">Logg inn</a></li>
@@ -117,9 +117,12 @@ $firstnameErr = $lastnameErr = $emailErr = $phoneErr = $passwordErr = "";
 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
-    // Rolle
-    $rolle = $_POST["rolle"] === "admin" ? "admin" : "gjest";
+    // Sjekk rolle
+    if (isset($_POST["rolle"]) && ($_POST["rolle"] === "admin" || $_POST["rolle"] === "gjest")) {
+        $rolle = $_POST["rolle"];
+    } else {
+        $rolle = "gjest"; // Standardverdi
+    }
     
     // Sjekk fornavn
     if (empty($_POST["firstname"])) {
@@ -235,9 +238,9 @@ $conn->close();
         <span class="error"><?php echo $passwordErr; ?></span>
         <br><br>
         
-        <label for="role">Velg rolle:</label>
-        <select id="role" name="role">
-        <option value="guest">Gjest</option>
+        <label for="rolle">Velg rolle:</label>
+        <select id="rolle" name="rolle">
+        <option value="gjest">Gjest</option>
         <option value="admin">Admin</option>
         </select>
         <br><br>
