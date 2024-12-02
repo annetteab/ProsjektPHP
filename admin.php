@@ -110,6 +110,16 @@
         die("Tilkobling feilet: " . $conn->connect_error);
     }
 
+ // Hvis admin er logget inn, vis siden
+    session_start(); 
+    
+    if (isset($_SESSION['rolle']) && $_SESSION['rolle'] == 'admin') {
+        echo "<p>Velkommen, " . $_SESSION['fornavn'] . "</p>";
+    } else {
+        die("Gjester har ikke tilgang til denne siden.");
+    }
+
+
     // SQL-spørring for å hente alle romdataene
     $sql = "SELECT Romnummer, Type, Pris, Maks_voksne, Maks_barn, Tilgjengelighet, innsjekk, utsjekk, Etasje, Nar_heis FROM Rom";
     $result = $conn->query($sql);
