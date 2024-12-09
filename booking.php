@@ -184,7 +184,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $children = $_POST['children'];
 
     // SQL-spørring for å finne tilgjengelige rom
-    $sql = "SELECT * FROM rom WHERE tilgjengelighet = 1 AND maks_voksne >= ? AND maks_barn >= ? 
+    $sql = "SELECT * FROM rom WHERE tilgjengelighet = 'ledig' AND maks_voksne >= ? AND maks_barn >= ? 
             AND romnummer NOT IN (
                 SELECT romnummer FROM reservasjoner 
                 WHERE (innsjekk < ? AND utsjekk > ?)

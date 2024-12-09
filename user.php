@@ -123,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $rolle = "gjest"; // Standardverdi
     }
-    
+
     // Sjekk fornavn
     if (empty($_POST["firstname"])) {
         $firstnameErr = "Navn er obligatorisk";
@@ -203,6 +203,8 @@ function test_input($data) {
     $data = trim($data);
     $data = stripslashes($data);
     $data = htmlspecialchars($data);
+    //Kunne hatt med
+    //$data = ucwords(strtolower($data)); 
     return $data;
 }
 

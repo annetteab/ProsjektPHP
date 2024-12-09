@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->close();
         $conn->close();
 
-        header("Location: profil.php?success=1");
+        header("Location: gjesteprofil.php?success=1");
         exit();
     }
 }
